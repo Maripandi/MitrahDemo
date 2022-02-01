@@ -1,0 +1,65 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Create Employee</h1>
+    <p> Create your data here </p>
+
+    <div class="container">
+        <h3 class="page-header text-primary text-center">Registration</h3>
+        <div>
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+         </div>
+        <form action="" method="POST" autocomplete="off">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name" />
+            </div>
+            <div class="form-group">
+                <label>Age</label>
+                <input type="text" class="form-control" name="age" />
+            </div>
+            <div class="form-group">
+                <label>Department</label>
+                    <select class="form-control" name="department">
+                        {% for i in department %}
+                          <option value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="form-group">
+                <label>Designation</label>
+                    <select class="form-control" name="designation">
+                        {% for i in designation %}
+                          <option value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+ 
+            <div class="form-group">
+                <label>Salary</label>
+                <input type="text" class="form-control" name="Salary" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+                <input type="reset" value="clear" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}
